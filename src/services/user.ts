@@ -1,28 +1,33 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
-interface Post {
+interface User {
   id: number,
   name: string,
   company: {
     name: string,
   }
 }
-type PostsResponse = Post[]
+type UserModel = User[]
+
+export interface UserDeleteInterface {
+    id: number,  
+}
+type UserDelete = UserDeleteInterface
 
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com' }),
   tagTypes: ['Post'],
   endpoints: (builder) => ({
-    getUserData: builder.query<PostsResponse, void>({      
+    getUserData: builder.query<UserModel, void>({      
       query: () => '/users',      
     }),
     
-    deleteUserData: builder.mutation<Post, Partial<Post>>({
+    deleteUserData: builder.mutation<UserDelete, { userDelete: UserDelete }>({
      
-     query: (id) => ({
-       url: `/users${id}`,
+     query: ({userDelete}) => ({
+       url: `/users/${userDelete.id}`,
        method: 'DELETE',       
      }),
      
