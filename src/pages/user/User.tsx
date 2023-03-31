@@ -1,32 +1,18 @@
-import { Box, Avatar} from "@mui/material";
+import { Box, Avatar, Button} from "@mui/material";
 import { styled } from "@mui/material/styles";
-
+import { ButtonClose } from "./ButtonClose";
 
 interface Props {
   urlImg: string,
   name: string,
   company: string,
+  id: number,
 }
 
 const UserBox = styled(Box)({
   display: 'flex',
   marginBottom: '16px',  
   position: 'relative', 
-});
-
-const UserClose = styled(Box)({  
-  width: '26px',
-  height: '26px',
-  borderRadius: '50%',
-  border: '2px solid #FFFFFF',
-  backgroundColor: '#949494',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'absolute',
-  top: '0',
-  left: '51px',
-  boxSizing: 'border-box',
 });
 
 const UserText = styled(Box)({  
@@ -46,15 +32,14 @@ const UserTextCompany = styled(Box)({
   marginTop: '6px', 
 });
 
-export const User = ({ urlImg='', name='', company='' }: Props) => {
+
+export const User = ({ urlImg='', name='', company='', id }: Props) => {
 
   return (
     <UserBox>      
-      <Avatar src={urlImg} sx={{ width: 64, height: 64 }}/>   
-      <UserClose>
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M0.528598 0.528606C0.788948 0.268256 1.21106 0.268256 1.47141 0.528606L5 4.0572L8.5286 0.528606C8.78895 0.268256 9.21106 0.268256 9.47141 0.528606C9.73176 0.788955 9.73176 1.21107 9.47141 1.47141L5.94281 5.00001L9.47141 8.52861C9.73176 8.78895 9.73176 9.21106 9.47141 9.47141C9.21106 9.73176 8.78895 9.73176 8.5286 9.47141L5 5.94282L1.47141 9.47141C1.21106 9.73176 0.788948 9.73176 0.528598 9.47141C0.268248 9.21106 0.268248 8.78895 0.528598 8.52861L4.05719 5.00001L0.528598 1.47141C0.268248 1.21107 0.268248 0.788955 0.528598 0.528606Z" fill="white"/>
-        </svg>
-      </UserClose>
+      <Avatar src={urlImg} sx={{ width: 64, height: 64}}/>
+      <ButtonClose id={id} />    
+
       <UserText>
         <UserTextName>{name}</UserTextName> 
         <UserTextCompany>{company}</UserTextCompany>
