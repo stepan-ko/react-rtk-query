@@ -10,10 +10,6 @@ interface User {
 }
 type UserModel = User[]
 
-export interface UserDeleteInterface {
-    id: number,  
-}
-type UserDelete = UserDeleteInterface
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -24,10 +20,10 @@ export const userApi = createApi({
       query: () => '/users',      
     }),
     
-    deleteUserData: builder.mutation<UserDelete, { userDelete: UserDelete }>({
+    deleteUserData: builder.mutation<number, { idUser: number }>({
      
-     query: ({userDelete}) => ({
-       url: `/users/${userDelete.id}`,
+     query: ({idUser}) => ({
+       url: `/users/${idUser}`,
        method: 'DELETE',       
      }),
      

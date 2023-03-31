@@ -2,8 +2,6 @@ import { Button} from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import { userApi } from "../../services/user"
-import { UserDeleteInterface } from "../../services/user"
-
 
 interface Props {
   id: number,
@@ -33,42 +31,21 @@ const cross = <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns=
 
 export const ButtonClose = ({ id }: Props) => {
  
-
   const [
     deleteUser, 
-    { isLoading: deleteLoading, 
-      isSuccess: deleteSuccess, 
-      isError: deleteError
-    },    
+    { isLoading: isBool},   
   ] = userApi.useDeleteUserDataMutation();
 
-  if (deleteLoading) {
-    console.log('Удаление выполняется...')
-  } else if (deleteSuccess) {
-    console.log('Удаление выполнено')
-  } else if (deleteError) {
-    console.log('Ошибка удаления')
-  } else {
-    console.log('DELETE не был вызван')
-  }
+const idUser = id
 
-
-/*
-const deleteExample = (userDelete: UserDeleteInterface) => {
-      deleteUser({ userDelete }), [deleteUser]
-    }
-*/
-
-
-//Нажатие на кнопку с крестиком
-const buttonClose = (id : number) => {
-  console.log('нажата кнопка c id = ' + id);
-  
-}
 
   return (      
-      <UserButton onClick={() => buttonClose(id)}>
+      <UserButton onClick={() => {   
+          deleteUser({ idUser })     
+          console.log('нажата кнопка c id = ' + id + '  isLoading = ' + isBool)  
+      }}>
         {cross}
       </UserButton>      
   );
 };
+
