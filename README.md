@@ -4,5 +4,5 @@
 - Применяется RTK Query
 - Используется Material UI
 
-![users](./users.png)
+![users](./users.jpg)
 
